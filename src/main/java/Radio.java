@@ -1,6 +1,6 @@
 public class Radio {
-    public int numberStation;
-    public int volume;
+    private int numberStation;
+    private int volume;
 
     public void setNumberStation(int newNumberStation) {
         if (newNumberStation > 9) {
@@ -16,14 +16,14 @@ public class Radio {
         return numberStation;
     }
 
-    public void setNextStation(int newNumberStation) {
-        newNumberStation++;
-        setNumberStation(newNumberStation);
+    public void setNextStation() {
+        int target = numberStation + 1;
+        setNumStation(target);
     }
 
-    public void setPrevStation(int newNumberStation) {
-        newNumberStation--;
-        setNumberStation(newNumberStation);
+    public void setPrevStation() {
+        int target = numberStation - 1;
+        setNumStation(target);
     }
 
     public void setNumStation(int newNumberStation) {
@@ -31,7 +31,12 @@ public class Radio {
     }
 
     public void setVolume(int newVolume) {
-        if (0 <= newVolume && newVolume >= 10) ;
+        if (newVolume < 0) {
+            return;
+        }
+        if (newVolume > 10) {
+            return;
+        }
         volume = newVolume;
     }
 
@@ -39,21 +44,13 @@ public class Radio {
         return volume;
     }
 
-    public void increaseVolume(int newVolume) {
-        newVolume++;
-        setVolume(newVolume);
-        if (newVolume > 10) {
-            newVolume = 10;
-        }
-        volume = newVolume;
+    public void increaseVolume() {
+        int target = volume + 1;
+        setVolume(target);
     }
 
-    public void decreaseVolume(int newVolume) {
-        newVolume--;
-        setVolume(newVolume);
-        if (newVolume < 0) {
-            newVolume = 0;
-        }
-        volume = newVolume;
+    public void decreaseVolume() {
+        int target = volume - 1;
+        setVolume(target);
     }
 }
